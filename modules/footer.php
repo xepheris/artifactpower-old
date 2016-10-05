@@ -1,6 +1,6 @@
 <div id="footer">
 	<p id="cent"><a href="modules/changelog.php">Changelog</a></p>
-	<p id="cent">Author: <a href="http://eu.battle.net/wow/en/character/blackmoore/Xepheris/simple">Xepheris (EU-Blackmoore)</a> // <a href="http://reddit.com/u/xepher1s">reddit: /u/xepher1s</a> // <a href="http://artifactpower.info/artifactpower.zip">Download source code as .zip (last update 10/04/16)</a></p>
+	<p id="cent">Author: <a href="http://eu.battle.net/wow/en/character/blackmoore/Xepheris/simple">Xepheris (EU-Blackmoore)</a> // <a href="http://reddit.com/u/xepher1s">reddit: /u/xepher1s</a> // <a href="https://github.com/xepheris/artifactpower">Github repository</a></p>
     <center>
 	<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
     	<input type="hidden" name="cmd" value="_donations">
