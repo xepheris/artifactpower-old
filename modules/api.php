@@ -17,7 +17,7 @@ if($calcdiff >= '900') {
 	$arrContextOptions=array('ssl' => array('verify_peer' => false, 'verify_peer_name' => false, ),);  
 	
 	// API KEY
-	$api = 'ymxk7mfdvrqmvxd6q57bxw7xek43v4vz';
+	$api = '';
 	
 	// REMOVE SPACES IN SERVER NAME TO PREVENT BUGS IN URL
 	if(strpos($server, ' ') !== false) {
