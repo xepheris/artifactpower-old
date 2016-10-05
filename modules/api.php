@@ -1,6 +1,6 @@
 <?php
 
-// SPAM BLOCK (ONE UPDATE PER CHARACTER PER 5 MINUTES)
+// SPAM BLOCK (ONE UPDATE PER CHARACTER PER 15 MINUTES)
 
 if(strpos($server, "'") !== false) {
 	$server = addslashes($server);
