@@ -1,0 +1,119 @@
+@charset "UTF-8";
+/* CSS Document */
+
+* {
+	font-family: Cambria,Georgia, serif;
+}
+
+body {
+	height: 100%;
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+	background-color: #C0B283;
+}
+
+#content {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+}
+
+#start, #core, #footer {
+	width: 75%;
+	margin: 0px auto;
+	border-left: 2px solid black;
+	border-right: 2px solid black;
+	background-color: #D6CDAE;
+}
+
+#start {
+	height: auto;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+}
+
+#core {
+	height: auto;
+	text-align: center;
+}
+
+#footer {
+	height: auto;
+	border-bottom: 2px solid black;
+	border-top: 2px solid black;
+}
+
+h1, h2, #cent {
+	text-align: center;
+}
+
+#changelog {
+	display: table;
+	margin: 0 auto;
+}
+
+#changelog p {
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+a:visited {
+	color: black;
+}
+
+a:link {
+	color: black;
+}
+
+#small {
+	font-size: 14px;
+}
+
+#t {
+	display: table;
+	border-collapse:collapse; 
+}
+
+#tr {
+	display: table-row;
+}
+
+#td {
+	display: table-cell;
+	border: thin solid black; 
+	padding: 3px; 
+}	
+
+#error {
+	color: red;
+}
+
+#seconds {
+	color: #95C281;
+}
+
+#minutes {
+	color: #66A04D;
+}
+
+#hours {
+	color: #AF9F11;
+}
+
+#days {
+	color: #FC4A1A;
+}
+
+.accordion-toggle {
+	cursor: pointer;
+}
+
+.accordion-content {
+	display: block;
+}
+
+.accordion-content.default {
+	display: none;
+}
