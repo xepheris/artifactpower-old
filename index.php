@@ -250,7 +250,7 @@ echo '</head>
 			}
 			
 			echo '</select>
-			<button type="submit" name="class">Filter class</button>
+			<button type="submit">Filter class</button>
 			</form>
 			<center>
 			<p>Important: Artifact Level is bugged due to missing API calls for relics. Relic not connected to your regular traits => not counted. Potentially, could be up to 3 lower.</p>
