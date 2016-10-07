@@ -320,6 +320,9 @@ echo '</head>
 			// % USER DISTRIBUTION GRAPH
 			include('modules/graph.php');
 			
+			// ITEMLEVEL CHART
+			include('modules/ilvl_avg.php');
+			
 			// PIE CHART
 			include('modules/piechart.php');
 					

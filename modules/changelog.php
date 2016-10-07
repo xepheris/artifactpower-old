@@ -17,7 +17,8 @@
 	<div id="core">
     	<div id="changelog">
     	<?php
-		$changelogarray = array('v2.6 (10/05/16)' => 'bugfixed compare-module to allow servers with apostrophes', 
+		$changelogarray = array('v2.7 (10/07/16)' => 'added itemlevel graph since requested',
+		'v2.6 (10/05/16)' => 'bugfixed compare-module to allow servers with apostrophes', 
 		'v2.5 (10/04/16)' => 'updated .zip, many bugfixes',
 		'v2.4 (09/28/16)' => '<b>implementation of compare function within a jQuery-free accordion, new columns: artifact level & itemlevel</b> bugfixes, recoloring gridlines of graphs',
 		'v2.3 (09/27/16)' => 'y-axis of distribution graph will not show values below 0 since they are not possible; filters always show top50 of selected filter',
