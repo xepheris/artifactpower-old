@@ -17,7 +17,8 @@
 	<div id="core">
     	<div id="changelog">
     	<?php
-		$changelogarray = array('v2.7 (10/07/16)' => 'added itemlevel graph since requested',
+		$changelogarray = array('v2.8 (10/14/16)' => 'number formatting, another percentile, several bugfixes',
+		'v2.7 (10/07/16)' => 'added itemlevel graph since requested',
 		'v2.6 (10/05/16)' => 'bugfixed compare-module to allow servers with apostrophes', 
 		'v2.5 (10/04/16)' => 'updated .zip, many bugfixes',
 		'v2.4 (09/28/16)' => '<b>implementation of compare function within a jQuery-free accordion, new columns: artifact level & itemlevel</b> bugfixes, recoloring gridlines of graphs',

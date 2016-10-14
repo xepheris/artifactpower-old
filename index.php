@@ -12,7 +12,7 @@ echo '<!DOCTYPE html>
 <meta name="language" content="en" />
 <meta name="publisher" content="reddit.com/u/xepher1s" />
 <meta name="distribution" content="global" />
-<meta name="reply-to" content="apcalc@gmail.com" />
+<meta name="reply-to" content="artifactpowerinfo@gmail.com" />
 <meta name="revisit-after" content="7 days" />
 <meta name="page-topic" content="artifact power tool" />
 <meta name="copyright" content="MIT License reddit.com/u/xepher1s" />
@@ -162,7 +162,7 @@ echo '</head>
 				echo '<br /><div id="result"><span style="background-color: #FD9E84; margin: 0px auto;">DISCLAIMER:<br />the data is fetched from the armory, so it probably will never be 100% accurate, but as close as possible.</span></div>
 				<p id="result">Updated <a href="http://' .$region. '.battle.net/wow/en/character/' .$server. '/' .$char. '/simple">' .$char. ' (' .$region. '-' .$server. ')</a>.</p>
 				<p id="result">Total Artifact Power gained: ' .$totalgained. '</p>
-				<p id="result">% completed: ' .(round($totalgained/$cap, 4)*100). '</p>
+				<p id="result">% completed: ' .(round($totalgained/$cap, 5)*100). '</p>
 				<p id="result">Artifact level: ' .$alevel. '</p>
 				<p id="result">Average itemlevel: ' .$itemlevel. '</p>';
 				
@@ -173,7 +173,7 @@ echo '</head>
 
 				// IF YES, UPDATE INFORMATION TO AVOID DUPLICATES
 				if($searcholduser != '') {
-					$updateuser = mysqli_query($conn, "UPDATE `data1` SET `class` = '" .$class. "', `total` = '" .$totalgained. "', `percent` = '" .(round($totalgained/$cap, 4)*100). "',  `alevel` = '" .$alevel. "', `ilvl` = '" .$itemlevel. "', `timestamp` = '" .time(). "' WHERE `id` = '" .$searcholduser['id']. "'");		
+					$updateuser = mysqli_query($conn, "UPDATE `data1` SET `class` = '" .$class. "', `total` = '" .$totalgained. "', `percent` = '" .(round($totalgained/$cap, 5)*100). "',  `alevel` = '" .$alevel. "', `ilvl` = '" .$itemlevel. "', `timestamp` = '" .time(). "' WHERE `id` = '" .$searcholduser['id']. "'");		
 				
 				echo '<p style="color: green;">Hello again! Thanks for revisiting, I actually updated your stats so recheck the start page to check if you made it in there.</p>';
 				}
@@ -300,7 +300,7 @@ echo '</head>
 																	
 					echo '<div id="tr">
 					<div id="td">' .$i. '</div>
-					<div id="td">' .$data['total']. '</div>
+					<div id="td">' .number_format($data['total']). '</div>
 					<div id="td">' .$data['percent']. '</div>
 					<div id="td">' .$data['alevel']. '</div>
 					<div id="td"><a href="http://' .$data['region']. '.battle.net/wow/en/character/' .$data['server']. '/' .$data['char']. '/simple">' .$data['char']. ' (' .$data['region']. '-' .$data['server']. ')</a></div>
