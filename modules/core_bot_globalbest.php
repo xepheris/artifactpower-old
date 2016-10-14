@@ -54,7 +54,7 @@ echo '</div>
 </div>
 <div id="tr">
 <div id="td">EU</div>
-<div id="td">' .$r1EU['total']. '</div>
+<div id="td">' .number_format($r1EU['total']). '</div>
 <div id="td">' .$r1EU['percent']. '</div>
 <div id="td">' .$r1EU['alevel']. '</div>
 <div id="td"><a href="http://' .$r1EU['region']. '.battle.net/wow/en/character/' .$r1EU['server']. '/' .$r1EU['char']. '/simple">' .$r1EU['char']. ' (' .$r1EU['region']. '-' .$r1EU['server']. ')</a></div>
@@ -64,7 +64,7 @@ echo '</div>
 </div>
 <div id="tr" style="border-bottom: 2px solid black;">
 <div id="td">US</div>
-<div id="td">' .$r1US['total']. '</div>
+<div id="td">' .number_format($r1US['total']). '</div>
 <div id="td">' .$r1US['percent']. '</div>
 <div id="td">' .$r1US['alevel']. '</div>
 <div id="td"><a href="http://' .$r1US['region']. '.battle.net/wow/en/character/' .$r1US['server']. '/' .$r1US['char']. '/simple">' .$r1US['char']. ' (' .$r1US['region']. '-' .$r1US['server']. ')</a></div>
@@ -73,7 +73,7 @@ echo '</div>
 <div id="td"><a href="?updatechar=' .$r1US['id']. '">update</a></div>
 </div>';
 
-$amountofclasses = mysqli_query($conn, "SELECT `class`, `color` FROM `classes`");
+$amountofclasses = mysqli_query($conn, "SELECT `class`, `color`, `class_short` FROM `classes`");
 			
 $c = '1';
 while($class = mysqli_fetch_array($amountofclasses)) {
@@ -103,8 +103,8 @@ while($class = mysqli_fetch_array($amountofclasses)) {
 	}
 				
 	echo '<div id="tr">
-	<div id="td" style="background-color: ' .$class['color']. ';">' .$class['class']. '</div>
-	<div id="td">' .${'r1cl' . $c}['total']. '</div>
+	<div id="td" style="background-color: ' .$class['color']. ';"><a href="?class=' .$class['class_short']. '">' .$class['class']. '</a></div>
+	<div id="td">' .number_format(${'r1cl' . $c}['total']). '</div>
 	<div id="td">' .${'r1cl' . $c}['percent']. '</div>
 	<div id="td">' .${'r1cl' . $c}['alevel']. '</div>
 	<div id="td"><a href="http://' .${'r1cl' . $c}['region']. '.battle.net/wow/en/character/' .${'r1cl' . $c}['server']. '/' .${'r1cl' . $c}['char']. '/simple">' .${'r1cl' . $c}['char']. ' (' .${'r1cl' . $c}['region']. '-' .${'r1cl' . $c}['server']. ')</a></div>
