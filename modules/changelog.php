@@ -17,7 +17,8 @@
 	<div id="core">
     	<div id="changelog">
     	<?php
-		$changelogarray = array('v2.8 (10/14/16)' => 'number formatting, another percentile, several bugfixes',
+		$changelogarray = array('v2.9 (10/17/16)' => 'updating a moved character deletes faulty entry now & regular DB updates for each class every 15 minutes',
+		'v2.8 (10/14/16)' => 'number formatting, another percentile, several bugfixes',
 		'v2.7 (10/07/16)' => 'added itemlevel graph since requested',
 		'v2.6 (10/05/16)' => 'bugfixed compare-module to allow servers with apostrophes', 
 		'v2.5 (10/04/16)' => 'updated .zip, many bugfixes',
