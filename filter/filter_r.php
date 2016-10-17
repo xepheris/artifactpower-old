@@ -3,7 +3,7 @@ if(isset($topregion) && ($topserver == '')) {
 	
 	if($topregion == 'EU' || $topregion == 'US') {
 		
-		$topregionsearch = mysqli_query($conn, "SELECT * FROM `data1` WHERE `region` = '" .$topregion. "' ORDER BY `total` DESC LIMIT 50");
+		$topregionsearch = mysqli_query($conn, "SELECT * FROM `data1` WHERE `region` = '" .$topregion. "' ORDER BY `total` DESC LIMIT 100");
 		
 		if($topregionsearch == '') {
 			echo '</div><p id="error">No tampering allowed, sorry.</p>

@@ -6,7 +6,7 @@ if(isset($topregion) && ($topserver != '') && ($topclass == '')) {
 
 
 	$topserver = addslashes($topserver);
-	$topserversearch = mysqli_query($conn, "SELECT * FROM `data1` WHERE `server` = '" .$topserver. "' AND `region` = '" .$topregion. "' ORDER BY `total` DESC LIMIT 50");	
+	$topserversearch = mysqli_query($conn, "SELECT * FROM `data1` WHERE `server` = '" .$topserver. "' AND `region` = '" .$topregion. "' ORDER BY `total` DESC LIMIT 100");	
 	$topserver = stripslashes($topserver);
 	while($users = mysqli_fetch_array($topserversearch)) {
 		

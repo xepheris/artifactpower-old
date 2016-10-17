@@ -4,7 +4,7 @@ if(isset($topregion) && (!isset($topserver)) && ($topclass != '')) {
 	topregionsearch();	
 	topclasssearch();
 	
-	$topregionclasssearch = mysqli_query($conn, "SELECT * FROM `data1` WHERE `class` = '" .$classname. "' AND `region` = '" .$topregion. "' ORDER BY `total` DESC LIMIT 50");
+	$topregionclasssearch = mysqli_query($conn, "SELECT * FROM `data1` WHERE `class` = '" .$classname. "' AND `region` = '" .$topregion. "' ORDER BY `total` DESC LIMIT 100");
 			
 	while($users = mysqli_fetch_array($topregionclasssearch)) {
 			
@@ -14,6 +14,7 @@ if(isset($topregion) && (!isset($topserver)) && ($topclass != '')) {
 		$timesincelastupdate = round(time('now')-$users['timestamp'], 2);
 					
 		// IF LESS THAN A MINUTE
+		
 		if($timesincelastupdate < '60') {
 			$effectivetime = '<span id="seconds">' .$timesincelastupdate. ' seconds</span>';
 		}

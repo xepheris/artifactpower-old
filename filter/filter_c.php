@@ -4,7 +4,7 @@ if((!isset($topregion)) && (!isset($topserver)) && (isset($topclass)) && $topcla
 				
 	topclasssearch();
 								
-	$topclasssearch = mysqli_query($conn, "SELECT * FROM `data1` WHERE `class` = '" .$classname. "' ORDER BY `total` DESC LIMIT 50");
+	$topclasssearch = mysqli_query($conn, "SELECT * FROM `data1` WHERE `class` = '" .$classname. "' ORDER BY `total` DESC LIMIT 100");
 							
 	while($users = mysqli_fetch_array($topclasssearch)) {
 					
