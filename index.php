@@ -141,6 +141,11 @@ echo '</head>
 			// INCLUDE ACTUAL RETRIEVAL METHOD
 			include('modules/api.php');
 			
+			if((isset($_GET['updatechar'])) && ($data === FALSE)) {
+				echo '<p id="error">This character is either inactive or has transferred server. Hence it was removed from the database.</p>';
+				$delete = mysqli_query($conn, "DELETE FROM `data1` WHERE `id` = '" .$_GET['updatechar']. "'");
+			}
+			
 			// IF API RETURNS..
 			
 			if(isset($reached) && $reached == '0') {
