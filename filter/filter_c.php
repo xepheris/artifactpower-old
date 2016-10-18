@@ -13,21 +13,21 @@ if((!isset($topregion)) && (!isset($topserver)) && (isset($topclass)) && $topcla
 		// TIMESTAMP LAST UPDATE IN SECONDS
 		$timesincelastupdate = round(time('now')-$users['timestamp'], 2);
 					
-		// IF LESS THAN A MINUTE
+		// COLORIZATION DEPENDING ON LAST UPDATE
 		if($timesincelastupdate < '60') {
 			$effectivetime = '<span id="seconds">' .$timesincelastupdate. ' seconds</span>';
 		}
 		elseif(($timesincelastupdate > '60') && ($timesincelastupdate < '3600')) {
-			$effectivetime = '<span id="minutes">' .round($timesincelastupdate/60, 1). ' minutes</span>';
+			$effectivetime = '<span id="seconds">' .round($timesincelastupdate/60, 1). ' minutes</span>';
 		}
-		elseif(($timesincelastupdate > '3600') && ($timesincelastupdate < '86400')) {
+		elseif(($timesincelastupdate >= '3600') && ($timesincelastupdate < '64800')) {
+			$effectivetime = '<span id="minutes">' .round($timesincelastupdate/60/60, 1). ' hours</span>';
+		}
+		elseif(($timesincelastupdate >= '64800') && ($timesincelastupdate < '86400')) {
 			$effectivetime = '<span id="hours">' .round($timesincelastupdate/60/60, 1). ' hours</span>';
 		}
-		elseif(($timesincelastupdate > '8400') && ($timesincelastupdate < '31622400')) {
+		elseif($timesincelastupdate >= '86400') {
 			$effectivetime = '<span id="days">' .round($timesincelastupdate/60/60/24, 2). ' days</span>';
-		}
-		elseif($timesincelastupdate > '31622400') {
-			$effectivetime = '<span id="days">' .round($timesincelastupdate/60/60/24/365.25, 2). ' years</span>';
 		}
 		
 		if($users['alevel'] == '0') {

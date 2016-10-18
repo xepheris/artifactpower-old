@@ -6,38 +6,38 @@ $r1EUupdated = round(time('now')-$r1EU['timestamp'], 2);
 $r1US = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM `data1` WHERE `region` = 'US' ORDER BY `total` DESC LIMIT 1"));
 $r1USupdated = round(time('now')-$r1US['timestamp'], 2);
 
+// COLORIZATION DEPENDING ON LAST UPDATE
 if($r1EUupdated < '60') {
 	$r1EUupdated = '<span id="seconds">' .$r1EUupdated. ' seconds</span>';
 }
 elseif(($r1EUupdated > '60') && ($r1EUupdated < '3600')) {
-	$r1EUupdated = '<span id="minutes">' .round($r1EUupdated/60, 1). ' minutes</span>';
+	$r1EUupdated = '<span id="seconds">' .round($r1EUupdated/60, 1). ' minutes</span>';
 }
-elseif(($r1EUupdated > '3600') && ($r1EUupdated < '86400')) {
+elseif(($r1EUupdated >= '3600') && ($r1EUupdated < '64800')) {
+	$r1EUupdated = '<span id="minutes">' .round($r1EUupdated/60/60, 1). ' hours</span>';
+}
+elseif(($r1EUupdated >= '64800') && ($r1EUupdated < '86400')) {
 	$r1EUupdated = '<span id="hours">' .round($r1EUupdated/60/60, 1). ' hours</span>';
 }
-elseif(($r1EUupdated > '8400') && ($r1EUupdated < '31622400')) {
+elseif($r1EUupdated >= '86400') {
 	$r1EUupdated = '<span id="days">' .round($r1EUupdated/60/60/24, 2). ' days</span>';
-}
-elseif($r1EUupdated > '31622400') {
-	$r1EUupdated = '<span id="days">' .round($r1EUupdated/60/60/24/365.25, 2). ' years</span>';
 }
 
 if($r1USupdated < '60') {
 	$r1USupdated = '<span id="seconds">' .$r1USupdated. ' seconds</span>';
 }
 elseif(($r1USupdated > '60') && ($r1USupdated < '3600')) {
-	$r1USupdated = '<span id="minutes">' .round($r1USupdated/60, 1). ' minutes</span>';
+	$r1USupdated = '<span id="seconds">' .round($r1USupdated/60, 1). ' minutes</span>';
 }
-elseif(($r1USupdated > '3600') && ($r1USupdated < '86400')) {
+elseif(($r1USupdated >= '3600') && ($r1USupdated < '64800')) {
+	$r1USupdated = '<span id="minutes">' .round($r1USupdated/60/60, 1). ' hours</span>';
+}
+elseif(($r1USupdated >= '64800') && ($r1USupdated < '86400')) {
 	$r1USupdated = '<span id="hours">' .round($r1USupdated/60/60, 1). ' hours</span>';
 }
-elseif(($r1USupdated > '8400') && ($r1USupdated < '31622400')) {
+elseif($r1USupdated >= '86400') {
 	$r1USupdated = '<span id="days">' .round($r1USupdated/60/60/24, 2). ' days</span>';
 }
-elseif($r1USupdated > '31622400') {
-	$r1USupdated = '<span id="days">' .round($r1USupdated/60/60/24/365.25, 2). ' years</span>';
-}
-
 					
 echo '</div>
 <h3>Top users for each region & class</h3>
@@ -86,16 +86,16 @@ while($class = mysqli_fetch_array($amountofclasses)) {
 				$subtimestamp = '<span id="seconds">' .${'r1cl' . $c . 'updated'}. ' seconds</span>';
 		}
 		elseif((${'r1cl' . $c . 'updated'} > '60') && (${'r1cl' . $c . 'updated'} < '3600')) {
-			$subtimestamp = '<span id="minutes">' .round(${'r1cl' . $c . 'updated'}/60, 1). ' minutes</span>';
+			$subtimestamp = '<span id="seconds">' .round(${'r1cl' . $c . 'updated'}/60, 1). ' minutes</span>';
 		}
-		elseif((${'r1cl' . $c . 'updated'} > '3600') && (${'r1cl' . $c . 'updated'} < '86400')) {
+		elseif((${'r1cl' . $c . 'updated'} > '3600') && (${'r1cl' . $c . 'updated'} < '64800')) {
+			$subtimestamp = '<span id="minutes">' .round(${'r1cl' . $c . 'updated'}/60/60, 1). ' hours</span>';
+		}
+		elseif((${'r1cl' . $c . 'updated'} > '64800') && (${'r1cl' . $c . 'updated'} < '86400')) {
 			$subtimestamp = '<span id="hours">' .round(${'r1cl' . $c . 'updated'}/60/60, 1). ' hours</span>';
 		}
-		elseif((${'r1cl' . $c . 'updated'} > '8400') && (${'r1cl' . $c . 'updated'} < '31622400')) {
+		elseif(${'r1cl' . $c . 'updated'} >= '86400') {
 			$subtimestamp = '<span id="days">' .round(${'r1cl' . $c . 'updated'}/60/60/24, 2). ' days</span>';
-		}
-		elseif(${'r1cl' . $c . 'updated'} > '31622400') {
-			$subtimestamp = '<span id="days">' .round(${'r1cl' . $c . 'updated'}/60/60/24/365.25, 2). ' years</span>';
 		}
 	}
 	elseif(${'r1cl' . $c . 'updated'} == time('now')) {
