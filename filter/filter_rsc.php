@@ -38,7 +38,7 @@ if(isset($topregion) && ($topserver != '') && ($topclass != '')) {
 					
 		echo '<div id="tr">
 		<div id="td">' .$i. '</div>
-		<div id="td">' .$users['total']. '</div>
+		<div id="td">' .number_format($users['total']). '</div>
 		<div id="td">' .$users['percent']. '</div>
 		<div id="td">' .$users['alevel']. '</div>
 		<div id="td"><a href="http://' .$users['region']. '.battle.net/wow/en/character/' .$users['server']. '/' .$users['char']. '/simple">' .$users['char']. ' (' .$users['region']. '-' .$users['server']. ')</a></div>

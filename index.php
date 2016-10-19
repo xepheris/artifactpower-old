@@ -128,7 +128,7 @@ echo '</head>
 				$region = $_POST['region'];
 			}
 			
-			if(isset($_GET['updatechar'])) {
+			if(isset($_GET['updatechar']) && is_numeric($_GET['updatechar'])) {
 				$char_id = $_GET['updatechar'];
 				$fetch_char_data = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM `data1` WHERE `id` = '" .$char_id. "'"));
 				
@@ -141,7 +141,7 @@ echo '</head>
 			// INCLUDE ACTUAL RETRIEVAL METHOD
 			include('modules/api.php');
 			
-			if((isset($_GET['updatechar'])) && ($data === FALSE)) {
+			if((isset($_GET['updatechar'])) && (($data === FALSE) || ($reached == '0'))) {
 				echo '<p id="error">This character is either inactive or has transferred server. Hence it was removed from the database.</p>';
 				$delete = mysqli_query($conn, "DELETE FROM `data1` WHERE `id` = '" .$_GET['updatechar']. "'");
 			}
@@ -164,7 +164,7 @@ echo '</head>
 					$server = str_replace('%20', ' ', $server);
 				}
 				
-				echo '<br /><div id="result"><span style="background-color: #FD9E84; margin: 0px auto;">DISCLAIMER:<br />the data is fetched from the armory, so it probably will never be 100% accurate, but as close as possible.</span></div>
+				echo '<br /><div id="result"><span style="background-color: #FD9E84; margin: 0px auto;">DISCLAIMER:<br />the data is fetched from the armory, so it is as accurate as can be.</span></div>
 				<p id="result">Updated <a href="http://' .$region. '.battle.net/wow/en/character/' .$server. '/' .$char. '/simple">' .$char. ' (' .$region. '-' .$server. ')</a>.</p>
 				<p id="result">Total Artifact Power gained: ' .$totalgained. '</p>
 				<p id="result">% completed: ' .(round($totalgained/$cap, 5)*100). '</p>
@@ -258,7 +258,6 @@ echo '</head>
 			<button type="submit">Filter class</button>
 			</form>
 			<center>
-			<p>Important: Artifact Level is bugged due to missing API calls for relics. Relic not connected to your regular traits => not counted. Potentially, could be up to 3 lower.</p>
 			<div id="t">
 			<div id="tr" style="border-bottom: 2px solid black;">
 			<div id="td">#</div>
@@ -378,7 +377,7 @@ echo '</head>
 			<div id="td">' .round($alevelsum['totalalevel']/$users['chars'], 0). '</div>
 			</div>
 			</div>
-			<p>All Artifact Power tracked on this page would be enough to fill out ' .round($sumtotal['sumtotal']/$cap, 0). ' Artifact Weapons.<br />That means, you would in average need the progress of ' .round($cap/$averageapgained, 0). ' players for one completed.</p></center></div>';
+			<p>All Artifact Power tracked on this page would be enough to fill out ' .number_format(round($sumtotal['sumtotal']/$cap, 0)). ' Artifact Weapons.<br />That means, you would in average need the progress of ' .round($cap/$averageapgained, 0). ' players for one completed.</p></center></div>';
 			?>
 			<script type="text/javascript">
 			server_EU=new Array(<?php echo str_replace(array('[', ']'), '', htmlspecialchars(json_encode($server_EU), ENT_NOQUOTES)); ?>);

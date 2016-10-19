@@ -53,7 +53,7 @@ echo '</div>
 <div id="td"></div>
 </div>
 <div id="tr">
-<div id="td">EU</div>
+<div id="td"><a href="?topregion=EU">EU</a></div>
 <div id="td">' .number_format($r1EU['total']). '</div>
 <div id="td">' .$r1EU['percent']. '</div>
 <div id="td">' .$r1EU['alevel']. '</div>
@@ -63,7 +63,7 @@ echo '</div>
 <div id="td"><a href="?updatechar=' .$r1EU['id']. '">update</a></div>
 </div>
 <div id="tr" style="border-bottom: 2px solid black;">
-<div id="td">US</div>
+<div id="td"><a href="?topregion=US">US</a></div>
 <div id="td">' .number_format($r1US['total']). '</div>
 <div id="td">' .$r1US['percent']. '</div>
 <div id="td">' .$r1US['alevel']. '</div>

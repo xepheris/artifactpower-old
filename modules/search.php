@@ -18,6 +18,7 @@ elseif($check_if_exists['id'] != '' || $check_if_exists['id'] != '0') {
 	$rank = mysqli_fetch_array(mysqli_query($conn, "SELECT z.rank FROM (SELECT `id`, `char`, @rownum := @rownum + 1 AS `rank` FROM `data1`, (SELECT @rownum := 0) r ORDER BY `total` DESC) as z WHERE `id` = '" .$user_id. "'"));
 				
 	echo '<center>
+	<p>Important: search is supposed to give you an approximate indication of your absolute rank. If entries show twice or more, the db is updating currently.</p>
 	<h3>Showing +- 12 users above/below ' .$char. ' (' .$region. ' - ' .$server. ')</h3>
 	<div id="t">
 	<div id="tr">
@@ -40,22 +41,21 @@ elseif($check_if_exists['id'] != '' || $check_if_exists['id'] != '0') {
 					
 		// TIMESTAMP LAST UPDATE IN SECONDS
 		$timesincelastupdate = round(time('now')-$user['timestamp'], 2);
-					
-		// IF LESS THAN A MINUTE
+		
 		if($timesincelastupdate < '60') {
 			$effectivetime = '<span id="seconds">' .$timesincelastupdate. ' seconds</span>';
 		}
 		elseif(($timesincelastupdate > '60') && ($timesincelastupdate < '3600')) {
-			$effectivetime = '<span id="minutes">' .round($timesincelastupdate/60, 1). ' minutes</span>';
+			$effectivetime = '<span id="seconds">' .round($timesincelastupdate/60, 1). ' minutes</span>';
 		}
-		elseif(($timesincelastupdate > '3600') && ($timesincelastupdate < '86400')) {
+		elseif(($timesincelastupdate >= '3600') && ($timesincelastupdate < '64800')) {
+			$effectivetime = '<span id="minutes">' .round($timesincelastupdate/60/60, 1). ' hours</span>';
+		}
+		elseif(($timesincelastupdate >= '64800') && ($timesincelastupdate < '86400')) {
 			$effectivetime = '<span id="hours">' .round($timesincelastupdate/60/60, 1). ' hours</span>';
 		}
-		elseif(($timesincelastupdate > '8400') && ($timesincelastupdate < '31622400')) {
-			$effectivetime = '<span id="days">' .round($timesincelastupdate/60/60/24, 2). ' days</span>';
-		}
-		elseif($timesincelastupdate > '31622400') {
-			$effectivetime = '<span id="days">' .round($timesincelastupdate/60/60/24/365.25, 2). ' years</span>';
+		elseif($timesincelastupdate >= '86400') {
+			$effectivetime = '<span id="days">' .round($timesincelastupdate/60/60/24, 2). ' years</span>';
 		}
 					
 		$classshort = mysqli_fetch_array(mysqli_query($conn, "SELECT `class_short`, `color` FROM `classes` WHERE `class` = '" .$user['class']. "'"));
