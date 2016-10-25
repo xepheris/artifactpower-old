@@ -48,7 +48,7 @@ echo '</head>
 	
 	// SERVER INFORMATION
 	include('modules/serv.php');
-		
+			
 	// PREPARE SERVER ARRAYS
 	$server_EU = array();
 	$server_KR = array();
@@ -164,12 +164,28 @@ echo '</head>
 					$server = str_replace('%20', ' ', $server);
 				}
 				
+				$percent = round($totalgained/$cap, 5)*100;
+				
+				// FETCH AP WORLD RANK
+				$apranking = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(`id`) AS `ranking` FROM `data1` WHERE `percent` >= '" .$percent. "'"));
+				$apranking = number_format($apranking['ranking']);
+				$aprankingsame = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(`id`)  AS `apsame` FROM `data1` WHERE `percent` = '" .$percent. "'"));
+				$aprankingsame = $aprankingsame['apsame'];
+				
+				// FETCH ITEM LEVEL WORLD RANK
+				$ilvlranking = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(`id`) AS `ilvlranking` FROM `data1` WHERE `ilvl` >= '" .$itemlevel. "'"));
+				$ilvlranking = number_format($ilvlranking['ilvlranking']);
+				$ilvlsame = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(`id`) AS `same` FROM `data1` WHERE `ilvl` = '" .$itemlevel. "'"));
+				$ilvlsame = number_format($ilvlsame['same']);
+				
 				echo '<br /><div id="result"><span style="background-color: #FD9E84; margin: 0px auto;">DISCLAIMER:<br />the data is fetched from the armory, so it is as accurate as can be.</span></div>
 				<p id="result">Updated <a href="http://' .$region. '.battle.net/wow/en/character/' .$server. '/' .$char. '/simple">' .$char. ' (' .$region. '-' .$server. ')</a>.</p>
-				<p id="result">Total Artifact Power gained: ' .$totalgained. '</p>
+				<p id="result">Total Artifact Power gained: ' .number_format($totalgained). '</p>
 				<p id="result">% completed: ' .(round($totalgained/$cap, 5)*100). '</p>
 				<p id="result">Artifact level: ' .$alevel. '</p>
-				<p id="result">Average itemlevel: ' .$itemlevel. '</p>';
+				<p id="result">Average itemlevel: ' .$itemlevel. '</p>
+				<p id="result">Artifact Power World Rank: <u>' .$apranking. '</u> (' .$aprankingsame. ' have exactly your percentage too)</p>
+				<p id="result">Item Level World Rank: <u>' .$ilvlranking. '</u> (although ' .$ilvlsame. ' have the same itemlevel)</p>';
 				
 				
 				$char = ucwords(strtolower($char));
@@ -180,7 +196,7 @@ echo '</head>
 				if($searcholduser != '') {
 					$updateuser = mysqli_query($conn, "UPDATE `data1` SET `class` = '" .$class. "', `total` = '" .$totalgained. "', `percent` = '" .(round($totalgained/$cap, 5)*100). "',  `alevel` = '" .$alevel. "', `ilvl` = '" .$itemlevel. "', `timestamp` = '" .time(). "' WHERE `id` = '" .$searcholduser['id']. "'");		
 				
-				echo '<p style="color: green;">Hello again! Thanks for revisiting, I actually updated your stats so recheck the start page to check if you made it in there.</p>';
+				echo '<p style="color: green;">Hello again! Thanks for revisiting, your stats have been updated.</p>';
 				}
 				else {
 				// ELSE INSERT NEW USER
