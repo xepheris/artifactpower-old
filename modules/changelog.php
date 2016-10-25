@@ -41,7 +41,7 @@
 		'v0.1 (09/07/16)' => 'everything');
 		
 		$hallofhonorarray = array('<a href="http://reddit.com/u/kerradeph">kerradeph</a>' => 'Bugfix on old page',
-		'<a href="http://eu.battle.net/wow/en/character/Anetheron/Magtokk/simple">Magtokk (EU-Anetheron)</a>' => 'additional filters, testing',
+		'<a href="http://eu.battle.net/wow/en/character/Blackmoore/Magtokk/simple">Magtokk (EU-Blackmoore)</a>' => 'additional filters, testing',
 		'<a href="http://eu.battle.net/wow/en/character/Blackmoore/Phìne/simple">Phìne (EU-Blackmoore)</a>' => 'beta testing & ideas',
 		'<a href="http://eu.battle.net/wow/en/character/Kazzak/Znufflessd/simple">Znufflessd (EU-Kazzak)</a>' => '<a href="https://github.com/Znuff/artifactpower-feeder">python script</a> for scrapping wowprogress realms');
 		
