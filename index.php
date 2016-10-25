@@ -48,7 +48,7 @@ echo '</head>
 	
 	// SERVER INFORMATION
 	include('modules/serv.php');
-			
+	
 	// PREPARE SERVER ARRAYS
 	$server_EU = array();
 	$server_KR = array();
@@ -166,17 +166,27 @@ echo '</head>
 				
 				$percent = round($totalgained/$cap, 5)*100;
 				
+				if($alevel > '35') {
+					$alevel = '0';
+				}
+				
 				// FETCH AP WORLD RANK
 				$apranking = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(`id`) AS `ranking` FROM `data1` WHERE `percent` >= '" .$percent. "'"));
 				$apranking = number_format($apranking['ranking']);
 				$aprankingsame = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(`id`)  AS `apsame` FROM `data1` WHERE `percent` = '" .$percent. "'"));
-				$aprankingsame = $aprankingsame['apsame'];
+				$aprankingsame = $aprankingsame['apsame']-1;
+				if($aprankingsame < '0') {
+					$aprankingsame = '0';
+				}
 				
 				// FETCH ITEM LEVEL WORLD RANK
 				$ilvlranking = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(`id`) AS `ilvlranking` FROM `data1` WHERE `ilvl` >= '" .$itemlevel. "'"));
 				$ilvlranking = number_format($ilvlranking['ilvlranking']);
 				$ilvlsame = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(`id`) AS `same` FROM `data1` WHERE `ilvl` = '" .$itemlevel. "'"));
-				$ilvlsame = number_format($ilvlsame['same']);
+				$ilvlsame = number_format($ilvlsame['same']-1);
+				if($ilvlsame < '0') {
+					$ilvlsame = '0';
+				}
 				
 				echo '<br /><div id="result"><span style="background-color: #FD9E84; margin: 0px auto;">DISCLAIMER:<br />the data is fetched from the armory, so it is as accurate as can be.</span></div>
 				<p id="result">Updated <a href="http://' .$region. '.battle.net/wow/en/character/' .$server. '/' .$char. '/simple">' .$char. ' (' .$region. '-' .$server. ')</a>.</p>
@@ -374,9 +384,9 @@ echo '</head>
 			<div id="td">average AP gained</div>
 			<div id="td">average % completed</div>
 			<div id="td">EU users</div>
-			<div id="td">average AP gained US</div>
-			<div id="td">US users</div>
 			<div id="td">average AP gained EU</div>
+			<div id="td">US users</div>
+			<div id="td">average AP gained US</div>
 			<div id="td">average itemlevel</div>
 			<div id="td">average artifact level</div>
 			</div>
