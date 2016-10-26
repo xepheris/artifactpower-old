@@ -38,8 +38,18 @@ if(isset($topregion) && ($topserver != '') && ($topclass == '')) {
 		
 		echo '<div id="tr">
 		<div id="td">' .$i. '</div>
-		<div id="td">' .number_format($users['total']). '</div>
-		<div id="td">' .$users['percent']. '</div>
+		<div id="td">' .number_format($users['total']). '</div>';
+		$cap = '5216130';
+		$second_cap = '65256330';
+		if($users['total'] > $cap) {
+			$users['percent'] = '100';
+			$bonusprogress = round(($users['total']-$cap)/$second_cap, 5)*100;
+		}
+		elseif($users['total'] <= $cap) {
+			$bonusprogress = '0';
+		}
+		echo '<div id="td">' .$users['percent']. '</div>
+		<div id="td">' .$bonusprogress. '</div>
 		<div id="td">' .$users['alevel']. '</div>
 		<div id="td"><a href="http://' .$users['region']. '.battle.net/wow/en/character/' .$users['server']. '/' .$users['char']. '/simple">' .$users['char']. ' (' .$users['region']. '-' .$users['server']. ')</a></div>
 		<div id="td">' .$users['ilvl']. '</div>

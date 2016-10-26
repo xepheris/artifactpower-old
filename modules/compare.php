@@ -117,8 +117,9 @@ if((isset($_GET['char1'])) && ($_GET['char1'] != '')) {
 		<div id="td">#</div>
 		<div id="td">character name</div>
 		<div id="td">total AP gained</div>
-		<div id="td">percent</div>
-		<div id="td">artifact level)</div>
+		<div id="td">regular trait %</div>
+		<div id="td">bonus trait %</div>
+		<div id="td">artifact level</div>
 		<div id="td">armory link</div>
 		<div id="td">itemlevel</div>
 		<div id="td">class</div>
@@ -153,8 +154,18 @@ if((isset($_GET['char1'])) && ($_GET['char1'] != '')) {
 			echo '<div id="tr">
 			<div id="td">' .$number. '</div>
 			<div id="td">' .${'comparedata' .$number. ''}['char']. '</div>
-			<div id="td">' .${'comparedata' .$number. ''}['total']. '</div>
-			<div id="td">' .${'comparedata' .$number. ''}['percent']. '</div>
+			<div id="td">' .${'comparedata' .$number. ''}['total']. '</div>';
+			$cap = '5216130';
+			$second_cap = '65256330';
+			if(${'comparedata' .$number. ''}['total'] > $cap) {
+				${'comparedata' .$number. ''}['percent'] = '100';
+				$bonusprogress = round((${'comparedata' .$number. ''}['total']-$cap)/$second_cap, 5)*100;	;
+			}
+			elseif(${'comparedata' .$number. ''}['total'] <= $cap) {
+				$bonusprogress = '0';
+			}
+			echo '<div id="td">' .${'comparedata' .$number. ''}['percent']. '</div>
+			<div id="td">' .$bonusprogress. '</div>
 			<div id="td">' .${'comparedata' .$number. ''}['alevel']. '</div>
 			<div id="td"><a href="http://' .${'comparedata' .$number. ''}['region']. '.battle.net/wow/en/character/' .${'comparedata' .$number. ''}['server']. '/' .${'comparedata' .$number. ''}['char']. '/simple">' .${'comparedata' .$number. ''}['char']. ' (' .${'comparedata' .$number. ''}['region']. '-' .${'comparedata' .$number. ''}['server']. ')</a></div>
 			<div id="td">' .${'comparedata' .$number. ''}['ilvl']. '</div>

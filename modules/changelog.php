@@ -17,7 +17,8 @@
 	<div id="core">
     	<div id="changelog">
     	<?php
-		$changelogarray = array('v3.2 (10/25/16)' => 'minor textfixes :^) also included world ranking on individual update pages',
+		$changelogarray = array('v3.3 (10/26/16)' => 'prepared page for bonus trait progression',
+		'v3.2 (10/25/16)' => 'minor textfixes :^) also included world ranking on individual update pages',
 		'v3.1 (10/19/16)' => 'accurate artifact level API call',
 		'v3.0 (10/18/16)' => 'timestamp colorization updated to reflect automatic DB updates (every 18 hours)',
 		'v2.9 (10/17/16)' => 'updating a moved character deletes faulty entry now & regular DB updates for each class every 15 minutes',
