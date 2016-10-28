@@ -48,8 +48,7 @@ echo '</div>
 <div id="tr" style="border-bottom: 2px solid black;">
 <div id="td">#1 of</div>
 <div id="td">total AP gained</div>
-<div id="td">regular trait %</div>
-<div id="td">bonus trait %</div>
+<div id="td">weapon completed</div>
 <div id="td">artifact level</div>
 <div id="td">armory</div>
 <div id="td">itemlevel</div>
@@ -59,15 +58,13 @@ echo '</div>
 <div id="tr">
 <div id="td"><a href="?topregion=EU">EU</a></div>
 <div id="td">' .number_format($r1EU['total']). '</div>';
-if($r1EU['total'] > $cap) {
-	$r1EU['percent'] = '100';
-	$bonusprogress = round(($r1EU['total']-$cap)/$second_cap, 5)*100;	
+if($data['alevel'] == '34') {
+	$weapon = 'yes';
 }
-elseif($r1EU['total'] <= $cap) {
-	$bonusprogress = '0';
+else {
+	$weapon = 'no';
 }
-echo '<div id="td">' .$r1EU['percent']. '</div>
-<div id="td">' .$bonusprogress. '</div>
+echo '<div id="td">' .$weapon. '</div>
 <div id="td">' .$r1EU['alevel']. '</div>
 <div id="td"><a href="http://' .$r1EU['region']. '.battle.net/wow/en/character/' .$r1EU['server']. '/' .$r1EU['char']. '/simple">' .$r1EU['char']. ' (' .$r1EU['region']. '-' .$r1EU['server']. ')</a></div>
 <div id="td">' .$r1EU['ilvl']. '</div>
@@ -77,15 +74,13 @@ echo '<div id="td">' .$r1EU['percent']. '</div>
 <div id="tr" style="border-bottom: 2px solid black;">
 <div id="td"><a href="?topregion=US">US</a></div>
 <div id="td">' .number_format($r1US['total']). '</div>';
-if($r1US['total'] > $cap) {
-	$r1US['percent'] = '100';
-	$bonusprogress = round(($r1US['total']-$cap)/$second_cap, 5)*100;	
+if($data['alevel'] == '34') {
+	$weapon = 'yes';
 }
-elseif($r1US['total'] <= $cap) {
-	$bonusprogress = '0';
+else {
+	$weapon = 'no';
 }
-echo '<div id="td">' .$r1US['percent']. '</div>
-<div id="td">' .$bonusprogress. '</div>
+echo '<div id="td">' .$weapon. '</div>
 <div id="td">' .$r1US['alevel']. '</div>
 <div id="td"><a href="http://' .$r1US['region']. '.battle.net/wow/en/character/' .$r1US['server']. '/' .$r1US['char']. '/simple">' .$r1US['char']. ' (' .$r1US['region']. '-' .$r1US['server']. ')</a></div>
 <div id="td">' .$r1US['ilvl']. '</div>
@@ -125,15 +120,13 @@ while($class = mysqli_fetch_array($amountofclasses)) {
 	echo '<div id="tr">
 	<div id="td" style="background-color: ' .$class['color']. ';"><a href="?class=' .$class['class_short']. '">' .$class['class']. '</a></div>
 	<div id="td">' .number_format(${'r1cl' . $c}['total']). '</div>';
-	if(${'r1cl' . $c}['total'] > $cap) {
-		${'r1cl' . $c}['percent'] = '100';
-		$bonusprogress = round((${'r1cl' . $c}['total']-$cap)/$second_cap, 5)*100;	
+	if(${'r1cl' . $c}['alevel'] == '34') {
+		$weapon = 'yes';
 	}
-	elseif(${'r1cl' . $c}['total'] <= $cap) {
-		$bonusprogress = '0';
+	else {
+		$weapon = 'no';
 	}
-	echo '<div id="td">' .${'r1cl' . $c}['percent']. '</div>
-	<div id="td">' .$bonusprogress. '</div>
+	echo '<div id="td">' .$weapon. '</div>
 	<div id="td">' .${'r1cl' . $c}['alevel']. '</div>
 	<div id="td"><a href="http://' .${'r1cl' . $c}['region']. '.battle.net/wow/en/character/' .${'r1cl' . $c}['server']. '/' .${'r1cl' . $c}['char']. '/simple">' .${'r1cl' . $c}['char']. ' (' .${'r1cl' . $c}['region']. '-' .${'r1cl' . $c}['server']. ')</a></div>
 	<div id="td">' .${'r1cl' . $c}['ilvl']. '</div>

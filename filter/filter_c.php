@@ -37,17 +37,13 @@ if((!isset($topregion)) && (!isset($topserver)) && (isset($topclass)) && $topcla
 		echo '<div id="tr">
 		<div id="td">' .$i. '</div>
 		<div id="td">' .number_format($users['total']). '</div>';
-		$cap = '5216130';
-		$second_cap = '65256330';
-		if($users['total'] > $cap) {
-			$users['percent'] = '100';
-			$bonusprogress = round(($users['total']-$cap)/$second_cap, 5)*100;
+		if($users['alevel'] == '34') {
+			$weapon = 'yes';
 		}
-		elseif($users['total'] <= $cap) {
-			$bonusprogress = '0';
+		else {
+			$weapon = 'no';
 		}
-		echo '<div id="td">' .$users['percent']. '</div>
-		<div id="td">' .$bonusprogress. '</div>
+		echo '<div id="td">' .$weapon. '</div>
 		<div id="td">' .$users['alevel']. '</div>
 		<div id="td"><a href="http://' .$users['region']. '.battle.net/wow/en/character/' .$users['server']. '/' .$users['char']. '/simple">' .$users['char']. ' (' .$users['region']. '-' .$users['server']. ')</a></div>
 		<div id="td">' .$users['ilvl']. '</div>
@@ -58,13 +54,11 @@ if((!isset($topregion)) && (!isset($topserver)) && (isset($topclass)) && $topcla
 		$i++;
 	}
 				
-	$classusers = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(DISTINCT `char`) AS `chars` FROM `data1` WHERE `class` = '" .$classname. "'"));
+	$classusers = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(`char`) AS `chars` FROM `data1` WHERE `class` = '" .$classname. "'"));
 	
 	$averageapgained = mysqli_fetch_array(mysqli_query($conn, "SELECT SUM(`total`) AS `sumtotal` FROM `data1` WHERE `class` = '" .$classname. "'"));
 	$averageapgained = round($averageapgained['sumtotal']/$classusers['chars'], 0);
 				
-	$averagepercent = mysqli_fetch_array(mysqli_query($conn, "SELECT SUM(`percent`) AS `sumpercent` FROM `data1` WHERE `class` = '" .$classname. "'"));
-	$averagepercent = round($averagepercent['sumpercent']/$classusers['chars'], 2);
 			
 	echo '</div>
 	<h3>Statistics</h3>
@@ -72,12 +66,10 @@ if((!isset($topregion)) && (!isset($topserver)) && (isset($topclass)) && $topcla
 	<div id="tr">
 	<div id="td">total ' .$classname. 's</div>
 	<div id="td">average AP gained</div>
-	<div id="td">average % completed</div>
 	</div>
 	<div id="tr">
-	<div id="td">' .$classusers['chars']. '</div>
-	<div id="td">' .$averageapgained. '</div>
-	<div id="td">' .$averagepercent. '</div>
+	<div id="td">' .number_format($classusers['chars']). '</div>
+	<div id="td">' .number_format($averageapgained). '</div>
 	</div>
 	</div>
 	</center><br /></div>';

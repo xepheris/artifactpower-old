@@ -24,8 +24,7 @@ elseif($check_if_exists['id'] != '' || $check_if_exists['id'] != '0') {
 	<div id="tr">
 	<div id="td">#</div>
 	<div id="td">total AP gained</div>
-	<div id="td">regular trait %</div>
-	<div id="td">bonus trait %</div>
+	<div id="td">weapon completed</div>
 	<div id="td">artifact level</div>
 	<div id="td">armory</div>
 	<div id="td">itemlevel</div>
@@ -67,18 +66,14 @@ elseif($check_if_exists['id'] != '' || $check_if_exists['id'] != '0') {
 					
 		echo '<div id="tr">
 		<div id="td">' .$user['rank']. '</div>
-		<div id="td">' .$user['total']. '</div>';
-		$cap = '5216130';
-		$second_cap = '65256330';
-		if($user['total'] > $cap) {
-			$user['percent'] = '100';
-			$bonusprogress = round(($user['total']-$cap)/$second_cap, 5)*100;	
+		<div id="td">' .number_format($user['total']). '</div>';
+		if($user['alevel'] == '34') {
+			$weapon = 'yes';
 		}
-		elseif($user['total'] <= $cap) {
-			$bonusprogress = '0';
+		else {
+			$weapon = 'no';
 		}
-		echo '<div id="td">' .$user['percent']. '</div>
-		<div id="td">' .$bonusprogress. '</div>
+		echo '<div id="td">' .$weapon. '</div>
 		<div id="td">' .$user['alevel']. '</div>
 		<div id="td"><a href="http://' .$user['region']. '.battle.net/wow/en/character/' .$user['server']. '/' .$user['char']. '/simple">' .$user['char']. ' (' .$user['region']. '-' .$user['server']. ')</a></div>
 		<div id="td">' .$user['ilvl']. '</div>
@@ -116,18 +111,14 @@ elseif($check_if_exists['id'] != '' || $check_if_exists['id'] != '0') {
 				
 	echo '<div id="tr" style="background-color: white;">
 	<div id="td">' .$rank['rank']. '</div>
-	<div id="td">' .$check_if_exists['total']. '</div>';
-	$cap = '5216130';
-		$second_cap = '65256330';
-	if($check_if_exists['total'] > $cap) {
-		$check_if_exists['percent'] = '100';
-		$bonusprogress = round(($check_if_exists['total']-$cap)/$second_cap, 5)*100;	
+	<div id="td">' .number_format($check_if_exists['total']). '</div>';
+	if($data['alevel'] == '34') {
+		$weapon = 'yes';
 	}
-	elseif($check_if_exists['total'] <= $cap) {
-		$bonusprogress = '0';
+	else {
+		$weapon = 'no';
 	}
-	echo '<div id="td">' .$check_if_exists['percent']. '</div>
-	<div id="td">' .$bonusprogress. '</div>
+	echo '<div id="td">' .$weapon. '</div>
 	<div id="td">' .$check_if_exists['alevel']. '</div>
 	<div id="td"><a href="http://' .$check_if_exists['region']. '.battle.net/wow/en/character/' .$check_if_exists['server']. '/' .$check_if_exists['char']. '/simple">' .$check_if_exists['char']. ' (' .$check_if_exists['region']. '-' .$check_if_exists['server']. ')</a></div>
 	<div id="td">' .$check_if_exists['ilvl']. '</div>
@@ -170,18 +161,14 @@ elseif($check_if_exists['id'] != '' || $check_if_exists['id'] != '0') {
 					
 		echo '<div id="tr">
 		<div id="td">' .$user['rank']. '</div>
-		<div id="td">' .$user['total']. '</div>';
-		$cap = '5216130';
-		$second_cap = '65256330';
-		if($user['total'] > $cap) {
-			$user['percent'] = '100';
-			$bonusprogress = round(($user['total']-$cap)/$second_cap, 5)*100;
+		<div id="td">' .number_format($user['total']). '</div>';
+		if($user['alevel'] == '34') {
+			$weapon = 'yes';
 		}
-		elseif($user['total'] <= $cap) {
-			$bonusprogress = '0';
+		else {
+			$weapon = 'no';
 		}
-		echo '<div id="td">' .$user['percent']. '</div>
-		<div id="td">' .$bonusprogress. '</div>
+		echo '<div id="td">' .$weapon. '</div>
 		<div id="td">' .$user['alevel']. '</div>
 		<div id="td"><a href="http://' .$user['region']. '.battle.net/wow/en/character/' .$user['server']. '/' .$user['char']. '/simple">' .$user['char']. ' (' .$user['region']. '-' .$user['server']. ')</a></div>
 		<div id="td">' .$user['ilvl']. '</div>

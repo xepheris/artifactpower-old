@@ -17,7 +17,8 @@
 	<div id="core">
     	<div id="changelog">
     	<?php
-		$changelogarray = array('v3.3 (10/26/16)' => 'prepared page for bonus trait progression',
+		$changelogarray = array('v4.0 (10/28/16)' => 'removal of %-related columns due to naturally given inaccuracy :( updated everything else to reflect continuity',
+		'v3.3 (10/26/16)' => 'prepared page for bonus trait progression',
 		'v3.2 (10/25/16)' => 'minor textfixes :^) also included world ranking on individual update pages',
 		'v3.1 (10/19/16)' => 'accurate artifact level API call',
 		'v3.0 (10/18/16)' => 'timestamp colorization updated to reflect automatic DB updates (every 18 hours)',

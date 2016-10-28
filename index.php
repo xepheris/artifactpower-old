@@ -48,7 +48,7 @@ echo '</head>
 	
 	// SERVER INFORMATION
 	include('modules/serv.php');
-			
+	
 	// PREPARE SERVER ARRAYS
 	$server_EU = array();
 	$server_KR = array();
@@ -88,8 +88,7 @@ echo '</head>
 			<div id="tr">
 			<div id="td">#</div>
 			<div id="td">total AP gained</div>
-			<div id="td">regular trait %</div>
-			<div id="td">bonus trait %</div>
+			<div id="td">weapon completed</div>
 			<div id="td">artifact level</div>
 			<div id="td">armory</div>
 			<div id="td">itemlevel</div>
@@ -167,14 +166,7 @@ echo '</head>
 				}
 				
 				$percent = round($totalgained/$cap, 5)*100;
-				
-				if($percent >= '100') {
-					$percent = '100';
-					$bonustraitprogress = $second_cap-$cap;
-					$bonusgained = $totalgained-$cap;
-					$bonuspercent = round($bonusgained/$second_cap, 5)*100;
-				}
-				
+								
 				if($alevel > '35') {
 					$alevel = '0';
 				}
@@ -182,12 +174,7 @@ echo '</head>
 				// FETCH AP WORLD RANK
 				$apranking = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(`id`) AS `ranking` FROM `data1` WHERE `total` >= '" .$totalgained. "'"));
 				$apranking = number_format($apranking['ranking']);
-				$aprankingsame = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(`id`)  AS `apsame` FROM `data1` WHERE `total` = '" .$totalgained. "'"));
-				$aprankingsame = $aprankingsame['apsame']-1;
-				if($aprankingsame < '0') {
-					$aprankingsame = '0';
-				}
-				
+								
 				// FETCH ITEM LEVEL WORLD RANK
 				$ilvlranking = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(`id`) AS `ilvlranking` FROM `data1` WHERE `ilvl` >= '" .$itemlevel. "'"));
 				$ilvlranking = number_format($ilvlranking['ilvlranking']);
@@ -200,13 +187,9 @@ echo '</head>
 				echo '<br /><div id="result"><span style="background-color: #FD9E84; margin: 0px auto;">DISCLAIMER:<br />the data is fetched from the armory, so it is as accurate as can be.</span></div>
 				<p id="result">Updated <a href="http://' .$region. '.battle.net/wow/en/character/' .$server. '/' .$char. '/simple">' .$char. ' (' .$region. '-' .$server. ')</a>.</p>
 				<p id="result">Total Artifact Power gained: ' .number_format($totalgained). '</p>
-				<p id="result">% core traits completed: ' .(round($totalgained/$cap, 5)*100). '</p>';
-				if(isset($bonuspercent)) {
-					echo '<p id="result">bonus trait % completed: ' .$bonuspercent. '</p>';
-				}
-				echo '<p id="result">Artifact level: ' .$alevel. '</p>
+				<p id="result">Artifact level: ' .$alevel. '</p>
 				<p id="result">Average itemlevel: ' .$itemlevel. '</p>
-				<p id="result">Artifact Power World Rank: <u>' .$apranking. '</u> (' .$aprankingsame. ' have exactly your percentage too)</p>
+				<p id="result">Artifact Power World Rank: <u>' .$apranking. '</u></p>
 				<p id="result">Item Level World Rank: <u>' .$ilvlranking. '</u> (although ' .$ilvlsame. ' have the same itemlevel)</p>';
 				
 				
@@ -232,7 +215,7 @@ echo '</head>
 		// LANDING PAGE	
 		if((!isset($_POST['exec'])) && (!isset($_GET['updatechar'])) && (!isset($_GET['topregion'])) && (!isset($_GET['topserver'])) && (!isset($_GET['class']))) {
 			// CHECK AMOUNT OF UNIQUE ENTRIES IN DP
-			$users = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(DISTINCT `id`) AS `chars` FROM `data1`"));
+			$users = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(`id`) AS `chars` FROM `data1`"));
 			
 			// SUPPORTED REGIONS
 			$regions = array('EU', 'US');
@@ -300,8 +283,7 @@ echo '</head>
 			<div id="tr" style="border-bottom: 2px solid black;">
 			<div id="td">#</div>
 			<div id="td">total AP gained</div>
-			<div id="td">regular trait %</div>
-			<div id="td">bonus trait %</div>
+			<div id="td">weapon completed</div>
 			<div id="td">artifact level</div>
 			<div id="td">armory</div>
 			<div id="td">itemlevel</div>
@@ -311,7 +293,7 @@ echo '</head>
 			</div>';
 	
 			$i = '1';
-			$query = mysqli_query($conn, "SELECT `id`, `total`, `alevel`, `ilvl`, `percent`, `timestamp`, `char`, `class`, `region`, `server` FROM `data1` WHERE `char` != '' AND `region` != '' AND `server` != '' ORDER BY `total` DESC LIMIT 25");
+			$query = mysqli_query($conn, "SELECT `id`, `total`, `alevel`, `ilvl`, `timestamp`, `char`, `class`, `region`, `server` FROM `data1` WHERE `char` != '' AND `region` != '' AND `server` != '' ORDER BY `total` DESC LIMIT 25");
 			while($data = mysqli_fetch_array($query)) {
 				if(($data['server'] != '') || ($data['char'] != '' ) || ($data['region'] != '')) {	
 					
@@ -344,17 +326,13 @@ echo '</head>
 					echo '<div id="tr">
 					<div id="td">' .$i. '</div>
 					<div id="td">' .number_format($data['total']). '</div>';
-					$cap = '5216130';
-					$second_cap = '65256330';
-					if($data['total'] > $cap) {
-						$data['percent'] = '100';
-						$bonusprogress = round(($data['total']-$cap)/$second_cap, 5)*100;
+					if($data['alevel'] == '34') {
+						$weapon = 'yes';
 					}
-					elseif($data['total'] <= $cap) {
-						$bonusprogress = '0';
+					else {
+						$weapon = 'no';
 					}
-					echo '<div id="td">' .$data['percent']. '</div>
-					<div id="td">' .$bonusprogress. '</div>
+					echo '<div id="td">' .$weapon. '</div>
 					<div id="td">' .$data['alevel']. '</div>
 					<div id="td"><a href="http://' .$data['region']. '.battle.net/wow/en/character/' .$data['server']. '/' .$data['char']. '/simple">' .$data['char']. ' (' .$data['region']. '-' .$data['server']. ')</a></div>
 					<div id="td">' .$data['ilvl']. '</div>
@@ -382,10 +360,7 @@ echo '</head>
 			// GENERAL STATISTICS
 			$averageapgained = mysqli_fetch_array(mysqli_query($conn, "SELECT SUM(`total`) AS `sumtotal` FROM `data1`"));
 			$averageapgained = round($averageapgained['sumtotal']/$users['chars'], 0);
-		
-			$averagepercent = mysqli_fetch_array(mysqli_query($conn, "SELECT SUM(`percent`) AS `sumpercent` FROM `data1`"));
-			$averagepercent = round($averagepercent['sumpercent']/$users['chars'], 2);
-			
+				
 			$sumtotal = mysqli_fetch_array(mysqli_query($conn, "SELECT `total`, SUM(`total`) AS `sumtotal` FROM `data1`"));
 			
 			$sumEUusers = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(`id`) AS `sumEUusers` FROM `data1` WHERE `region` = 'EU'"));
@@ -405,7 +380,6 @@ echo '</head>
 			<div id="td">unique profiles</div>
 			<div id="td">total AP gained</div>
 			<div id="td">average AP gained</div>
-			<div id="td">average % completed</div>
 			<div id="td">EU users</div>
 			<div id="td">average AP gained EU</div>
 			<div id="td">US users</div>
@@ -417,7 +391,6 @@ echo '</head>
 			<div id="td">' .number_format($users['chars']). '</div>
 			<div id="td"><span title="' .number_format($sumtotal['sumtotal']). '">' .number_format($sumtotal['sumtotal']/1000000000). ' billion</span></div>
 			<div id="td">' .number_format($averageapgained). '</div>
-			<div id="td">' .$averagepercent. '</div>
 			<div id="td">' .number_format($sumEUusers['sumEUusers']). '</div>
 			<div id="td">' .number_format(round($averageEUgained['sumtotalEU']/$sumEUusers['sumEUusers'], 0)). '</div>
 			<div id="td">' .number_format($sumUSusers['sumUSusers']). '</div>
