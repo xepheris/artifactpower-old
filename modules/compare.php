@@ -155,10 +155,10 @@ if((isset($_GET['char1'])) && ($_GET['char1'] != '')) {
 			<div id="td">' .${'comparedata' .$number. ''}['char']. '</div>
 			<div id="td">' .number_format(${'comparedata' .$number. ''}['total']). '</div>';
 			if(${'comparedata' .$number. ''}['alevel'] == '34') {
-				$weapon = 'yes';
+				$weapon = '<center><img src="../achv_pr_yes.png" alt="missing image" /></center>';
 			}
 			else {
-				$weapon = 'no';
+				$weapon = '<center><img src="../achv_pr_no.png" alt="missing image" /></center>';
 			}
 			echo '<div id="td">' .$weapon. '</div>
 			<div id="td">' .${'comparedata' .$number. ''}['alevel']. '</div>

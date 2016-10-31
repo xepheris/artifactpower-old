@@ -327,10 +327,10 @@ echo '</head>
 					<div id="td">' .$i. '</div>
 					<div id="td">' .number_format($data['total']). '</div>';
 					if($data['alevel'] == '34') {
-						$weapon = 'yes';
+						$weapon = '<center><img src="achv_pr_yes.png" alt="missing image" /></center>';
 					}
 					else {
-						$weapon = 'no';
+						$weapon = '<center><img src="achv_pr_no.png" alt="missing image" /></center>';
 					}
 					echo '<div id="td">' .$weapon. '</div>
 					<div id="td">' .$data['alevel']. '</div>
@@ -371,7 +371,10 @@ echo '</head>
 			
 			$itemlevelsum = mysqli_fetch_array(mysqli_query($conn, "SELECT SUM(`ilvl`) AS `totalilvl` FROM `data1`"));
 			$alevelsum = mysqli_fetch_array(mysqli_query($conn, "SELECT SUM(`alevel`) AS `totalalevel` FROM `data1`"));
-				
+			
+			$sumprEU = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(`alevel`) AS `pr_EU` FROM `data1` WHERE `alevel` = '34' AND `region` = 'EU'"));
+			$sumprUS = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(`alevel`) AS `pr_US` FROM `data1` WHERE `alevel` = '34' AND `region` = 'US'"));
+							
 			$cap = '5216130';
 						
 			echo '<h3>Statistics</h3>
@@ -382,8 +385,10 @@ echo '</head>
 			<div id="td">average AP gained</div>
 			<div id="td">EU users</div>
 			<div id="td">average AP gained EU</div>
+			<div id="td"><img src="achv_pr_yes.png" alt="missing image" /> EU</div>
 			<div id="td">US users</div>
 			<div id="td">average AP gained US</div>
+			<div id="td"><img src="achv_pr_yes.png" alt="missing image" /> US</div>
 			<div id="td">average itemlevel</div>
 			<div id="td">average artifact level</div>
 			</div>
@@ -393,8 +398,10 @@ echo '</head>
 			<div id="td">' .number_format($averageapgained). '</div>
 			<div id="td">' .number_format($sumEUusers['sumEUusers']). '</div>
 			<div id="td">' .number_format(round($averageEUgained['sumtotalEU']/$sumEUusers['sumEUusers'], 0)). '</div>
+			<div id="td">' .$sumprEU['pr_EU']. ' (' .round($sumprEU['pr_EU']/$sumEUusers['sumEUusers'], 3). ' %)</div>
 			<div id="td">' .number_format($sumUSusers['sumUSusers']). '</div>
 			<div id="td">' .number_format(round($averageUSgained['sumtotalUS']/$sumUSusers['sumUSusers'], 0)). '</div>
+			<div id="td">' .$sumprUS['pr_US']. ' (' .round($sumprUS['pr_US']/$sumUSusers['sumUSusers'], 3). ' %)</div>
 			<div id="td">' .round($itemlevelsum['totalilvl']/$users['chars'], 0). '</div>
 			<div id="td">' .round($alevelsum['totalalevel']/$users['chars'], 0). '</div>
 			</div>

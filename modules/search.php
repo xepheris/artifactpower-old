@@ -68,10 +68,10 @@ elseif($check_if_exists['id'] != '' || $check_if_exists['id'] != '0') {
 		<div id="td">' .$user['rank']. '</div>
 		<div id="td">' .number_format($user['total']). '</div>';
 		if($user['alevel'] == '34') {
-			$weapon = 'yes';
+			$weapon = '<center><img src="../achv_pr_yes.png" alt="missing image" /></center>';
 		}
 		else {
-			$weapon = 'no';
+			$weapon = '<center><img src="../achv_pr_no.png" alt="missing image" /></center>';
 		}
 		echo '<div id="td">' .$weapon. '</div>
 		<div id="td">' .$user['alevel']. '</div>
@@ -113,10 +113,10 @@ elseif($check_if_exists['id'] != '' || $check_if_exists['id'] != '0') {
 	<div id="td">' .$rank['rank']. '</div>
 	<div id="td">' .number_format($check_if_exists['total']). '</div>';
 	if($data['alevel'] == '34') {
-		$weapon = 'yes';
+		$weapon = '<center><img src="../achv_pr_yes.png" alt="missing image" /></center>';
 	}
 	else {
-		$weapon = 'no';
+		$weapon = '<center><img src="../achv_pr_no.png" alt="missing image" /></center>';
 	}
 	echo '<div id="td">' .$weapon. '</div>
 	<div id="td">' .$check_if_exists['alevel']. '</div>
@@ -163,10 +163,10 @@ elseif($check_if_exists['id'] != '' || $check_if_exists['id'] != '0') {
 		<div id="td">' .$user['rank']. '</div>
 		<div id="td">' .number_format($user['total']). '</div>';
 		if($user['alevel'] == '34') {
-			$weapon = 'yes';
+			$weapon = '<center><img src="../achv_pr_yes.png" alt="missing image" /></center>';
 		}
 		else {
-			$weapon = 'no';
+			$weapon = '<center><img src="../achv_pr_no.png" alt="missing image" /></center>';
 		}
 		echo '<div id="td">' .$weapon. '</div>
 		<div id="td">' .$user['alevel']. '</div>

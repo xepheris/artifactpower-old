@@ -38,10 +38,10 @@ if((!isset($topregion)) && (!isset($topserver)) && (isset($topclass)) && $topcla
 		<div id="td">' .$i. '</div>
 		<div id="td">' .number_format($users['total']). '</div>';
 		if($users['alevel'] == '34') {
-			$weapon = 'yes';
+			$weapon = '<center><img src="../achv_pr_yes.png" alt="missing image" /></center>';
 		}
 		else {
-			$weapon = 'no';
+			$weapon = '<center><img src="../achv_pr_no.png" alt="missing image" /></center>';
 		}
 		echo '<div id="td">' .$weapon. '</div>
 		<div id="td">' .$users['alevel']. '</div>

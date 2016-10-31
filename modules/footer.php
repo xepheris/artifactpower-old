@@ -15,6 +15,6 @@
     </form>
     <p id="cent">If you want to contribute keeping this alive by paying for a part of the server, please consider donating.</p>
     <p id="cent">I do <u>not</u> intend to misuse any copyrighted names or trademarks. If there's any reason for me to change anything, please contact me via <a href="mailto:artfiactpowerinfo@gmail.com">mail</a> with proof.</p>
-    <p id="cent"><img src="/../favicon.ico" alt="favicon missing"/> is courtesy of Blizzard Entertainment.</p>
+    <p id="cent"><img src="/../favicon.ico" alt="favicon missing"/> and <img src="/../achv_pr_yes.png" alt="image missing"/> belong to Blizzard Entertainment.</p>
 	</center>     
 </div>
