@@ -17,7 +17,8 @@
 	<div id="core">
     	<div id="changelog">
     	<?php
-		$changelogarray = array('v4.1 (10/31/16)' => 'visual improvements',
+		$changelogarray = array('v4.2 (11/08/16)' => 'new stream graph, some small bugfixes',
+		'v4.1 (10/31/16)' => 'visual improvements',
 		'v4.0 (10/28/16)' => 'removal of %-related columns due to naturally given inaccuracy :( updated everything else to reflect continuity',
 		'v3.3 (10/26/16)' => 'prepared page for bonus trait progression',
 		'v3.2 (10/25/16)' => 'minor textfixes :^) also included world ranking on individual update pages',

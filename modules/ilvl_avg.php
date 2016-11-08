@@ -38,7 +38,7 @@ if(isset($_GET['updateilvl']) && ($_GET['updateilvl'] == '1')) {
 	}
 }
 
-echo '<div id="graph_ilvl" style="width: 75%; height: 500px"></div>';
+echo '<div id="graph_ilvl" style="width: 90%; height: 500px"></div>';
 
 $last_update = mysqli_fetch_array(mysqli_query($conn, "SELECT `users` FROM `ilvl_avg_graph` WHERE `ilvl` = '1'"));
 $last_update = time('now')-$last_update['users'];

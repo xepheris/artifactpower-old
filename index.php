@@ -48,7 +48,7 @@ echo '</head>
 	
 	// SERVER INFORMATION
 	include('modules/serv.php');
-	
+		
 	// PREPARE SERVER ARRAYS
 	$server_EU = array();
 	$server_KR = array();
@@ -326,7 +326,7 @@ echo '</head>
 					echo '<div id="tr">
 					<div id="td">' .$i. '</div>
 					<div id="td">' .number_format($data['total']). '</div>';
-					if($data['alevel'] == '34') {
+					if($data['alevel'] >= '34') {
 						$weapon = '<center><img src="achv_pr_yes.png" alt="missing image" /></center>';
 					}
 					else {
@@ -354,6 +354,9 @@ echo '</head>
 			// ITEMLEVEL CHART
 			include('modules/ilvl_avg.php');
 			
+			// AP GAIN CHART
+			include('modules/apgain.php');
+			
 			// PIE CHART
 			include('modules/piechart.php');
 					
@@ -372,8 +375,8 @@ echo '</head>
 			$itemlevelsum = mysqli_fetch_array(mysqli_query($conn, "SELECT SUM(`ilvl`) AS `totalilvl` FROM `data1`"));
 			$alevelsum = mysqli_fetch_array(mysqli_query($conn, "SELECT SUM(`alevel`) AS `totalalevel` FROM `data1`"));
 			
-			$sumprEU = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(`alevel`) AS `pr_EU` FROM `data1` WHERE `alevel` = '34' AND `region` = 'EU'"));
-			$sumprUS = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(`alevel`) AS `pr_US` FROM `data1` WHERE `alevel` = '34' AND `region` = 'US'"));
+			$sumprEU = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(`alevel`) AS `pr_EU` FROM `data1` WHERE `alevel` >= '34' AND `region` = 'EU'"));
+			$sumprUS = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(`alevel`) AS `pr_US` FROM `data1` WHERE `alevel` >= '34' AND `region` = 'US'"));
 							
 			$cap = '5216130';
 						
@@ -381,7 +384,6 @@ echo '</head>
 			<div id="t">
 			<div id="tr" style="border-bottom: 2px solid black;">
 			<div id="td">unique profiles</div>
-			<div id="td">total AP gained</div>
 			<div id="td">average AP gained</div>
 			<div id="td">EU users</div>
 			<div id="td">average AP gained EU</div>
@@ -394,13 +396,12 @@ echo '</head>
 			</div>
 			<div id="tr">
 			<div id="td">' .number_format($users['chars']). '</div>
-			<div id="td"><span title="' .number_format($sumtotal['sumtotal']). '">' .number_format($sumtotal['sumtotal']/1000000000). ' billion</span></div>
 			<div id="td">' .number_format($averageapgained). '</div>
 			<div id="td">' .number_format($sumEUusers['sumEUusers']). '</div>
-			<div id="td">' .number_format(round($averageEUgained['sumtotalEU']/$sumEUusers['sumEUusers'], 0)). '</div>
+			<div id="td">' .number_format(round($averageEUgained['sumtotalEU']/$sumEUusers['sumEUusers'], 2)). '</div>
 			<div id="td">' .$sumprEU['pr_EU']. ' (' .round($sumprEU['pr_EU']/$sumEUusers['sumEUusers'], 3). ' %)</div>
 			<div id="td">' .number_format($sumUSusers['sumUSusers']). '</div>
-			<div id="td">' .number_format(round($averageUSgained['sumtotalUS']/$sumUSusers['sumUSusers'], 0)). '</div>
+			<div id="td">' .number_format(round($averageUSgained['sumtotalUS']/$sumUSusers['sumUSusers'], 2)). '</div>
 			<div id="td">' .$sumprUS['pr_US']. ' (' .round($sumprUS['pr_US']/$sumUSusers['sumUSusers'], 3). ' %)</div>
 			<div id="td">' .round($itemlevelsum['totalilvl']/$users['chars'], 0). '</div>
 			<div id="td">' .round($alevelsum['totalalevel']/$users['chars'], 0). '</div>

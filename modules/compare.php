@@ -154,7 +154,7 @@ if((isset($_GET['char1'])) && ($_GET['char1'] != '')) {
 			<div id="td">' .$number. '</div>
 			<div id="td">' .${'comparedata' .$number. ''}['char']. '</div>
 			<div id="td">' .number_format(${'comparedata' .$number. ''}['total']). '</div>';
-			if(${'comparedata' .$number. ''}['alevel'] == '34') {
+			if(${'comparedata' .$number. ''}['alevel'] >= '34') {
 				$weapon = '<center><img src="../achv_pr_yes.png" alt="missing image" /></center>';
 			}
 			else {

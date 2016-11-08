@@ -19,10 +19,10 @@ if(isset($_GET['updategraph']) && ($_GET['updategraph'] == '1')) {
 		$spam_prevention = mysqli_query($conn, "INSERT INTO `total_graph_data` (`total`, `users`) VALUES ('101', '" .time('now'). "')");
 		
 		function generate_graph_data($highest_total) {
-			global $conn;
+			global $conn, $minus;
 			
 			$factor = '0.95';
-			
+					
 			if($highest_total >= '1000') {
 				$highest_total = round($highest_total, 0);
 				$next_lower = round($highest_total*$factor, 0);
@@ -49,7 +49,7 @@ if(isset($_GET['updategraph']) && ($_GET['updategraph'] == '1')) {
 	}
 }
 			
-echo '<div id="graph_users" style="width: 75%; height: 500px"></div>';
+echo '<div id="graph_users" style="width: 90%; height: 500px"></div>';
 
 $last_update = mysqli_fetch_array(mysqli_query($conn, "SELECT `users` FROM `total_graph_data` WHERE `total` = '101'"));
 $last_update = time('now')-$last_update['users'];
@@ -97,7 +97,7 @@ elseif($remaining_time < '0') {
 				viewWindow: {
 					min: 0 },
 				gridlines: { 
-					color: 'grey' },
+					color: 'grey' },	
 			}
 		};
 

@@ -58,7 +58,7 @@ echo '</div>
 <div id="tr">
 <div id="td"><a href="?topregion=EU">EU</a></div>
 <div id="td">' .number_format($r1EU['total']). '</div>';
-if($r1EU['alevel'] == '34') {
+if($r1EU['alevel'] >= '34') {
 	$weapon = '<center><img src="../achv_pr_yes.png" alt="missing image" /></center>';
 }
 else {
@@ -74,7 +74,7 @@ echo '<div id="td">' .$weapon. '</div>
 <div id="tr" style="border-bottom: 2px solid black;">
 <div id="td"><a href="?topregion=US">US</a></div>
 <div id="td">' .number_format($r1US['total']). '</div>';
-if($r1US['alevel'] == '34') {
+if($r1US['alevel'] >= '34') {
 	$weapon = '<center><img src="../achv_pr_yes.png" alt="missing image" /></center>';
 }
 else {
@@ -120,7 +120,7 @@ while($class = mysqli_fetch_array($amountofclasses)) {
 	echo '<div id="tr">
 	<div id="td" style="background-color: ' .$class['color']. ';"><a href="?class=' .$class['class_short']. '">' .$class['class']. '</a></div>
 	<div id="td">' .number_format(${'r1cl' . $c}['total']). '</div>';
-	if(${'r1cl' . $c}['alevel'] == '34') {
+	if(${'r1cl' . $c}['alevel'] >= '34') {
 		$weapon = '<center><img src="../achv_pr_yes.png" alt="missing image" /></center>';
 	}
 	else {
