@@ -24,7 +24,7 @@ echo '<div id="apgain" style="width: 90%; height: 500px"></div>';
 		]);
 
 		var options = {
-			title: 'Total AP gained stream (latest 2500 updates)',
+			title: 'Total AP gained stream (latest 10000 updates)',
 			curveType: 'function',
 			backgroundColor: '#D6CDAE',
 			legend: { position: 'none' },
@@ -36,7 +36,7 @@ echo '<div id="apgain" style="width: 90%; height: 500px"></div>';
 			?>
 				gridlines: { 
 					color: 'grey' },
-				format: 'short',
+				format: 'decimal',
 			
 			},
 		};
