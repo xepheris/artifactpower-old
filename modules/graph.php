@@ -47,7 +47,7 @@ if(isset($_GET['updategraph']) && $_GET['updategraph'] == '1') {
 		// CALC DAILY GAIN FROM RANK 1
 		$dayspassed = (time('now')-$timestamp)/60/60/24;
 		
-		$daily = round($total/$dayspassed, 0);
+		$daily = round(($total/$dayspassed)/10, 0);
 		
 		$spam_prevention = mysqli_query($conn, "INSERT INTO `total_graph_data` (`total`, `users`) VALUES ('101', '" .time('now'). "')");
 		
@@ -121,7 +121,7 @@ elseif($remaining_time < '0') {
 		]);
 
 		var options = {
-			title: 'Distribution of farmed Artifact Power (<?php echo $remaining_time_text; ?>)',
+			title: 'Distribution of farmed Artifact Power, steps based on 1/10th of daily gain of rank 1 (<?php echo $remaining_time_text; ?>)',
 			curveType: 'function',
 			backgroundColor: '#D6CDAE',
 			legend: { position: 'none' },

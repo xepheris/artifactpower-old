@@ -17,14 +17,15 @@
 	<div id="core">
     	<div id="changelog">
     	<?php
-		$changelogarray = array('v4.2 (11/08/16)' => 'new stream graph, some small bugfixes',
+		$changelogarray = array('v4.3 (11/09/16)' => 'new lineary graph',
+		'v4.2 (11/08/16)' => 'new stream graph, some small bugfixes',
 		'v4.1 (10/31/16)' => 'visual improvements',
 		'v4.0 (10/28/16)' => 'removal of %-related columns due to naturally given inaccuracy :( updated everything else to reflect continuity',
 		'v3.3 (10/26/16)' => 'prepared page for bonus trait progression',
 		'v3.2 (10/25/16)' => 'minor textfixes :^) also included world ranking on individual update pages',
 		'v3.1 (10/19/16)' => 'accurate artifact level API call',
 		'v3.0 (10/18/16)' => 'timestamp colorization updated to reflect automatic DB updates (every 18 hours)',
-		'v2.9 (10/17/16)' => 'updating a moved character deletes faulty entry now & regular DB updates for each class every 15 minutes',
+		'v2.9 (10/17/16)' => 'updating a transfered/inactive character deletes faulty entry now & regular DB updates for each class every 15 minutes',
 		'v2.8 (10/14/16)' => 'number formatting, another percentile, several bugfixes',
 		'v2.7 (10/07/16)' => 'added itemlevel graph since requested',
 		'v2.6 (10/05/16)' => 'bugfixed compare-module to allow servers with apostrophes', 
