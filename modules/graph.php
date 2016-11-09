@@ -54,19 +54,22 @@ if(isset($_GET['updategraph']) && $_GET['updategraph'] == '1') {
 		// BUILD NEW TABLE
 		
 		function generate_graph_data($total) {
-			global $conn, $daily;		
-			$next_lower = $total-$daily;
+			global $conn, $daily;
+			
+			if($total > '0') {
 				
-			$fetch_amount_of_users_sql = "SELECT COUNT(`id`) AS `sum_users` FROM `data1` WHERE `total` <= '" .$total. "' AND `total` > '" .$next_lower. "'";
-			$fetch_amount_of_users = mysqli_fetch_array(mysqli_query($conn, $fetch_amount_of_users_sql));
+				$next_lower = $total-$daily;
 				
-			$insert_into_graph_table_sql = "INSERT INTO `total_graph_data` (`total`, `users`) VALUES ('" .$total. "', '" .$fetch_amount_of_users['sum_users']. "')";
-			$insert_into_graph_table = mysqli_query($conn, $insert_into_graph_table_sql);
+				$fetch_amount_of_users_sql = "SELECT COUNT(`id`) AS `sum_users` FROM `data1` WHERE `total` <= '" .$total. "' AND `total` > '" .$next_lower. "'";
+				$fetch_amount_of_users = mysqli_fetch_array(mysqli_query($conn, $fetch_amount_of_users_sql));
 				
-			$total = $next_lower;
+				$insert_into_graph_table_sql = "INSERT INTO `total_graph_data` (`total`, `users`) VALUES ('" .$total. "', '" .$fetch_amount_of_users['sum_users']. "')";
+				$insert_into_graph_table = mysqli_query($conn, $insert_into_graph_table_sql);
 				
-			generate_graph_data($total);
+				$total = $next_lower;
 				
+				generate_graph_data($total);
+			}				
 		}
 
 		generate_graph_data($total);
