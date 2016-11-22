@@ -10,5 +10,6 @@
 		echo '<p id="cent"><a href="http://artifactpower.info/">Back</a></p>';
 	}
 	?>
+	<p id="cent"><b>NEW: <a href="http://artifactpower.info/mythic">Completed Mythic Dungeon Comparison subsite</a></b></p>
     <p id="cent"><b>Something's missing, bugged or you have an idea for improvement? Message me on reddit or add xhs207ga#2703 on battle.net</b></p>
 </div>
